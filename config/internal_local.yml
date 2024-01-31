@@ -1,0 +1,8 @@
+debug: true
+local: true
+restapi:
+  probe_host: "0.0.0.0"
+  probe_port: "16081"
+grpc:
+  logger_host: "localhost"
+  logger_port: "18081"
