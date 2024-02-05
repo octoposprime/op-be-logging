@@ -30,7 +30,7 @@ func (a EBusAdapter) Listen(ctx context.Context, channelName string, callBack fu
 			continue
 		}
 		inChannelName := result[0]
-		logData := tserialize.NewSerializer(me.LogData{}).FormJson(result[1]).(*pb.LogData)
+		logData := tserialize.SerializeFromJson[*pb.LogData](result[1])
 		go callBack(inChannelName, *map_ebus.NewLogData(logData).ToEntity())
 	}
 }

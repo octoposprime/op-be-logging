@@ -21,7 +21,7 @@ jobs:
           echo "machine github.com login ${{ secrets.GH_USER }} password ${{ secrets.GH_TOKEN }}" > ~/.netrc
           export GOPRIVATE=github.com/octoposprime/op-be-shared
           go mod tidy
-          go get -u -v ./...
+          go get  -v ./...
           go mod download
       - name: Build
         run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o main ./cmd/service/main.go
@@ -40,7 +40,7 @@ jobs:
           echo "machine github.com login ${{ secrets.GH_USER }} password ${{ secrets.GH_TOKEN }}" > ~/.netrc
           export GOPRIVATE=github.com/octoposprime/op-be-shared
           go mod tidy
-          go get -u -v ./...
+          go get  -v ./...
           go mod download
       - name: Test with the Go CLI
         run: go test -v -race ./... -coverprofile=./cover.out
