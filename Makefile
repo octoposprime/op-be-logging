@@ -61,7 +61,7 @@ docker-release: ## Release the container with tag latest and version
 
 ## Run:
 local-run: ## Run in Local for Development
-	LOCAL=true go run cmd/service/main.go
+	LOCAL = true && export LOCAL && go run cmd/service/main.go
 
 docker-run: ## Run in Docker for Development
 	docker run -d --expose $(LOCAL_PORT) -p $(LOCAL_PORT):$(CONTAINER_PORT) --network $(NETWORK) --name $(DOCKER_CONTAINER) $(DOCKER_REPOSITORY)/$(DOCKER_CONTAINER)
