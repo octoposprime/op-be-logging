@@ -11,6 +11,7 @@ RUN adduser \
 
 WORKDIR /app
 COPY . ./
+RUN go mod edit -dropreplace github.com/octoposprime/op-be-shared
 #RUN go mod tidy 
 #RUN go get -v ./... 
 RUN go mod download
