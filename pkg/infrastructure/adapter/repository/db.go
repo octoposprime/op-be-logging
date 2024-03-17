@@ -29,7 +29,7 @@ func NewDbAdapter(dbClient *tgorm.GormClient) DbAdapter {
 }
 
 func (a DbAdapter) Log(ctx context.Context, logData me.LogData) {
-	logDbMapper := map_repo.NewLogDataFromEntity(&logData)
+	logDbMapper := map_repo.NewLogDataFromEntity(logData)
 	result := a.DbClient.Save(&logDbMapper)
 	if result.Error != nil {
 		fmt.Println(tserialize.NewSerializer(logData).ToJson())

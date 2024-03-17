@@ -62,7 +62,7 @@ func NewLogDataFromPb(pb *pb.LogData) *LogData {
 }
 
 // NewLogDataFromEntity creates a new *LogData from entity.
-func NewLogDataFromEntity(entity *me.LogData) *LogData {
+func NewLogDataFromEntity(entity me.LogData) *LogData {
 	return &LogData{
 		&pb.LogData{
 			Id: entity.Id.String(),
@@ -112,7 +112,7 @@ type LogDatas []*LogData
 func NewLogDataFromEntities(entities []me.LogData) LogDatas {
 	logDatas := make([]*LogData, len(entities))
 	for i, entity := range entities {
-		logDatas[i] = NewLogDataFromEntity(&entity)
+		logDatas[i] = NewLogDataFromEntity(entity)
 	}
 	return logDatas
 }
