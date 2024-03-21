@@ -11,6 +11,10 @@ TEST?=false#is the container test?
 LOCAL_PORT=18081#Grpc port for local
 CONTAINER_PORT=18080#Grpc port in container
 NETWORK=op#Docker network name
+POSTGRES_USERNAME?=op#Postgres Db User Name
+POSTGRES_PASSWORD?=op#Postgres Db Password
+JWT_SECRET_KEY?=op#Jwt Secret Key
+REDIS_PASSWORD?=op#Redis Password
 
 GREEN  := $(shell tput -Txterm setaf 2)
 YELLOW := $(shell tput -Txterm setaf 3)
@@ -49,8 +53,13 @@ lint: ## Use golintci-lint on your project
 	docker run --rm -v $(shell pwd):/app -w /app golangci/golangci-lint:latest-alpine golangci-lint run --deadline=65s $(OUTPUT_OPTIONS)
 
 ## Docker:
-docker-build: ## Use the dockerfile to build the container
-	docker build --rm --tag $(DOCKER_REPOSITORY)/$(DOCKER_CONTAINER) --build-arg TEST=$(TEST) .
+docker-build: ## Use the Dockerfile to build the container
+	docker build --rm --tag $(DOCKER_REPOSITORY)/$(DOCKER_CONTAINER) \
+	--build-arg TEST=$(TEST) \
+	--build-arg POSTGRES_USERNAME=$(POSTGRES_USERNAME) \
+	--build-arg POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) \
+	--build-arg JWT_SECRET_KEY=$(JWT_SECRET_KEY) \
+	--build-arg REDIS_PASSWORD=$(REDIS_PASSWORD) .
 
 docker-release: ## Release the container with tag latest and version
 	docker tag $(DOCKER_REPOSITORY)/$(DOCKER_CONTAINER) $(DOCKER_REGISTRY)/$(DOCKER_REPOSITORY)/$(DOCKER_CONTAINER):latest
