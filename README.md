@@ -28,3 +28,4 @@ TEST=true POSTGRES_USERNAME=op POSTGRES_PASSWORD=op JWT_SECRET_KEY=op REDIS_PASS
 make docker-run 
 ```
 
+
