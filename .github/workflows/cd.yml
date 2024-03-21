@@ -1,7 +1,6 @@
 name: Docker Image Publish
 
 on:
-  pull_request:
   merge_group:
     branches:
       - 'phase*'
@@ -40,4 +39,5 @@ jobs:
             "JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}"
             "REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}"
           push: true
+          tags:  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:v1.0.0-test
           labels: ${{ steps.meta.outputs.labels }}
