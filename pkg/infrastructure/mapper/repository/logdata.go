@@ -60,7 +60,7 @@ func (s *LogData) String() string {
 }
 
 // NewLogDataFromEntity creates a new *LogData from entity.
-func NewLogDataFromEntity(entity *me.LogData) *LogData {
+func NewLogDataFromEntity(entity me.LogData) *LogData {
 	return &LogData{
 		Model:       tgorm.Model{ID: entity.Id},
 		EventDate:   entity.LogHeader.EventDate,
@@ -97,7 +97,7 @@ type LogDatas []*LogData
 func NewLogDataFromEntities(entities []me.LogData) LogDatas {
 	logDatas := make([]*LogData, len(entities))
 	for i, entity := range entities {
-		logDatas[i] = NewLogDataFromEntity(&entity)
+		logDatas[i] = NewLogDataFromEntity(entity)
 	}
 	return logDatas
 }

@@ -83,7 +83,7 @@ func NewLogDataFilterFromPb(pb *pb.LogDataFilter) *LogDataFilter {
 }
 
 // NewLogDataFilterFromEntity creates a new *LogDataFilter from entity.
-func NewLogDataFilterFromEntity(entity *me.LogDataFilter) *LogDataFilter {
+func NewLogDataFilterFromEntity(entity me.LogDataFilter) *LogDataFilter {
 	id := entity.Id.String()
 	eventDateFrom := timestamppb.New(entity.EventDateFrom)
 	eventDateTo := timestamppb.New(entity.EventDateTo)
