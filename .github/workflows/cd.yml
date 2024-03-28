@@ -37,6 +37,7 @@ jobs:
             "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}"
             "JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}"
             "REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}"
+            "POSTGRES_DATABASE=${{secrets.POSTGRES_DATABASE}}"
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
